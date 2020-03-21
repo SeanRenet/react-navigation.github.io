@@ -150,3 +150,27 @@ We recommend to reduce nesting navigators to minimal. Try to achieve the behavio
 - Nesting same type of navigators (e.g. tabs inside tabs, drawer inside drawer etc.) leads to a confusing UX
 
 Think of nesting navigators as a way to achieve the UI you want rather than a way to organize your code. If you want to create separate group of screens for organization, keep them in separate objects/arrays rather than separate navigators.
+
+#Note about Headers when nesting.
+
+The 'headerMode' property is needed to remove the double header when nesting
+
+function Root() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} />
+    </Stack.Navigator>
+  );
+}
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode='none'> 
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Root" component={Root} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
